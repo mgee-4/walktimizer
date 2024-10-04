@@ -11,12 +11,13 @@
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 TinyGPSMinus gps;
 float legLength = 1;
+int harmonic = 1;
 float optimalSpeed;
 float optimalPace;
 
 // Define the button pin
-const int upPin = 20;
-const int downPin = 23;
+const int upPin = 12;
+const int downPin = 16;
 
 void setup() {
   Serial.begin(9600);
@@ -29,7 +30,7 @@ void setup() {
   // Configure the button pin
   pinMode(downPin, INPUT_PULLUP);  // Set the button pin as input with internal pull-up resistor
   pinMode(upPin, INPUT_PULLUP);  // Set the button pin as input with internal pull-up resistor
-
+  pinMode(LED_BUILTIN, OUTPUT);
 
   if (!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) { // Have a display showing what each field indicates (ex: Optimal Speed, Current Speed, Efficiency)
     Serial.println(F("SSD1306 allocation failed"));
@@ -45,12 +46,18 @@ void setup() {
 void loop() {
   bool upPressed = digitalRead(upPin) == LOW;
   bool downPressed = digitalRead(downPin) == LOW;
-
-  if (upPressed) {
+  if (downPressed && upPressed){
+    digitalWrite(LED_BUILTIN, HIGH);  // turn the LED on (HIGH is the voltage level)
+    delay(1000);                      // wait for a second
+    digitalWrite(LED_BUILTIN, LOW);   // turn the LED off by making the voltage LOW
+  }
+  else if (upPressed) {
     displayUpButtonPressed();  // Display "UP" message when up button is pressed
-  } else if (downPressed) {
+  } 
+  else if (downPressed) {
     displayDownButtonPressed();  // Display "DOWN" message when down button is pressed
-  } else {
+  }
+  else {
     while (Serial1.available()) {
       char c = Serial1.read();
       if (gps.encode(c)) {
@@ -60,85 +67,89 @@ void loop() {
   }
 }
 
-
 // Temporary function to test button inputs and debouncing
-void displayDownButtonPressed() {
+void displayRightButtonPressed() {
   display.clearDisplay();
   display.setTextSize(2);
   display.setTextColor(SSD1306_WHITE);
   display.setCursor(0, 0);
-  display.println("DOWN");
+  display.println("Right");
   display.println("Pressed!");
   display.display();
-  delay(250);  // Debounce delay
+  delay(100);  // Debounce delay
 }
 
 // Temporary function to test button inputs and debouncing
-void displayUpButtonPressed() {
+void displayLeftButtonPressed() {
   display.clearDisplay();
   display.setTextSize(2);
   display.setTextColor(SSD1306_WHITE);
   display.setCursor(0, 0);
-  display.println("UP");
+  display.println("Left");
   display.println("Pressed!");
   display.display();
-  delay(250);  // Debounce delay
+  delay(100);  // Debounce delay
 }
-
 
 // Two buttons, one to increase leg length and one to decrease
 // Whenever there's an update to leg length, show the leg length screen, and show the increasing or decreasing leg length
 // After 3 seconds of no input, switch back to efficiency display mode
 // Or just replace the yellow optimal speed with the leg length value
 void updateOptimal() {
-  optimalSpeed = sqrt(legLength * 9.81) / (2 * 3.1415926535)*3.6;
-  optimalPace = 60/optimalSpeed;
+  optimalSpeed = harmonic * sqrt(legLength * 9.81) / ((2 * 3.1415926535)*3.6);
+  optimalPace = speedToPace(optimalSpeed);
 }
 
-
-float calculateEfficiency(float currentSpeed, float optimalSpeed) {
+float calculateEfficiency(float currentPace, float optimalPace) {
     float efficiency;
     // Calculate efficiency as the percentage difference from the optimal speed
-    efficiency = (1 - fabs(currentSpeed - optimalSpeed) / optimalSpeed) * 100.0;
-    // Ensure efficiency doesn't go below 0%
-    if (efficiency < 0) {
-        efficiency = 0;
-    }
+    efficiency = (1 - (fabs(optimalPace - currentPace) / optimalPace)) * 100.0;
     return efficiency;
 }
 
-// Measure and display speed
+float speedToPace(float currentSpeed) {
+  float currentPace = 60 / currentSpeed;
+  return currentPace;
+}
+
+void formatPace(float pace, char* buffer) {
+    int minutes = (int)pace;
+    int seconds = (int)((pace - minutes) * 60);
+    snprintf(buffer, 32, "%d'%02d\"", minutes, seconds);
+}
+
 void displayPace() {
-  float currentSpeed = gps.f_speed_kmph();
-  char buffer[32]; // Buffer storing the messages to print to the screen
+  float currentPace = speedToPace(gps.f_speed_kmph());
+  char buffer[32];
 
   // Calculate efficiency
-  float efficiency = calculateEfficiency(currentSpeed, optimalSpeed); 
+  float efficiency = calculateEfficiency(currentPace, optimalPace); 
   display.clearDisplay();
   display.setTextSize(2);
   display.setTextColor(SSD1306_WHITE);
   display.setCursor(0, 0);
 
-  if (currentSpeed > 0) {
-    dtostrf(optimalSpeed, -5, 2, buffer);
-    display.print(buffer);
-    display.println("km/h");
+  if (currentPace > 0) {
+        formatPace(optimalPace, buffer);
+        display.print(buffer);
+        display.println("/km");
 
-    dtostrf(currentSpeed, -5, 2, buffer);
-    display.print(buffer);
-    display.println("km/h");
+        formatPace(currentPace, buffer);
+        display.print(buffer);
+        display.println("/km");
 
-    display.setTextSize(2.5);
-    dtostrf(efficiency, -5, 2, buffer);
-    display.print(buffer);
-    display.print("%");
-  } else {
+        // Display efficiency
+        display.setTextSize(2.5);
+        dtostrf(efficiency, -5, 2, buffer);
+        display.print(buffer);
+        display.print("%");
+  } 
+  else {
     display.setTextSize(2);
     display.println("Need...");
     display.println("Satellites");
-    display.println("m(_ _)m");
+    display.println("T__T");
   }
-
   display.display();
 }
 
