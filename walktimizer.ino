@@ -10,14 +10,23 @@
 #define SCREEN_ADDRESS 0x3C // I2C address, either 0x3D or 0x3C
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 TinyGPSMinus gps;
-float legLength = 1;
+float legLength = 1.0;
 int harmonic = 1;
 float optimalSpeed;
 float optimalPace;
 
 // Define the button pin
-const int upPin = 12;
-const int downPin = 16;
+const int downPin = 12;
+const int upPin = 16;
+
+enum State {
+  PACE_DISPLAY,
+  LEG_LENGTH
+};
+
+State currentState = PACE_DISPLAY;
+unsigned long lastInputTime = 0;
+const unsigned long inputTimeout = 3000;
 
 void setup() {
   Serial.begin(9600);
@@ -28,8 +37,8 @@ void setup() {
   delay(1000);
 
   // Configure the button pin
-  pinMode(downPin, INPUT_PULLUP);  // Set the button pin as input with internal pull-up resistor
   pinMode(upPin, INPUT_PULLUP);  // Set the button pin as input with internal pull-up resistor
+  pinMode(downPin, INPUT_PULLUP);  // Set the button pin as input with internal pull-up resistor
   pinMode(LED_BUILTIN, OUTPUT);
 
   if (!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) { // Have a display showing what each field indicates (ex: Optimal Speed, Current Speed, Efficiency)
@@ -41,51 +50,65 @@ void setup() {
   delay(1000);
 }
 
-
-// Need to set up FSM between user input mode and speed checking/displaying, currently just printing speed/efficiency
-void loop() {
-  bool upPressed = digitalRead(upPin) == LOW;
+void updateState() {
   bool downPressed = digitalRead(downPin) == LOW;
-  if (downPressed && upPressed){
-    digitalWrite(LED_BUILTIN, HIGH);  // turn the LED on (HIGH is the voltage level)
-    delay(1000);                      // wait for a second
-    digitalWrite(LED_BUILTIN, LOW);   // turn the LED off by making the voltage LOW
-  }
-  else if (upPressed) {
-    displayUpButtonPressed();  // Display "UP" message when up button is pressed
-  } 
-  else if (downPressed) {
-    displayDownButtonPressed();  // Display "DOWN" message when down button is pressed
-  }
-  else {
-    while (Serial1.available()) {
-      char c = Serial1.read();
-      if (gps.encode(c)) {
-        displayPace();  // Display pace if GPS data is available
+  bool upPressed = digitalRead(upPin) == LOW;
+  switch (currentState) {
+    case PACE_DISPLAY:
+      if (downPressed && upPressed) {
+        currentState = LEG_LENGTH;  // Transition to user input mode
       }
-    }
+      else if (upPressed && (harmonic <= 5)) {
+        harmonic += 1;
+        updateOptimal();
+        displayUpButtonPressed();  // Display "UP" for up button
+      } 
+      else if (downPressed && (harmonic > 0)) {
+        harmonic -= 1;
+        updateOptimal();
+        displayDownButtonPressed();  // Display "DOWN" for down button
+      } 
+      displayPace();
+      break;
+
+    case LEG_LENGTH:
+      if (upPressed) {
+        legLength += 0.1;
+        updateOptimal();
+        displayUpButtonPressed();  // Display "UP" for up button
+      } 
+      else if (downPressed) {
+        legLength -= 0.1;
+        updateOptimal();
+        displayDownButtonPressed();  // Display "DOWN" for down button
+      } 
+      else if (upPressed && downPressed) {
+        currentState = PACE_DISPLAY;  // Return to default state
+      }
+      displayLegLength();
+      break;
   }
 }
 
 // Temporary function to test button inputs and debouncing
-void displayRightButtonPressed() {
+void displayUpButtonPressed() {
   display.clearDisplay();
   display.setTextSize(2);
   display.setTextColor(SSD1306_WHITE);
   display.setCursor(0, 0);
-  display.println("Right");
+  display.println("UP");
   display.println("Pressed!");
   display.display();
   delay(100);  // Debounce delay
 }
 
 // Temporary function to test button inputs and debouncing
-void displayLeftButtonPressed() {
+void displayDownButtonPressed() {
   display.clearDisplay();
   display.setTextSize(2);
   display.setTextColor(SSD1306_WHITE);
   display.setCursor(0, 0);
-  display.println("Left");
+  display.println("DOWN");
   display.println("Pressed!");
   display.display();
   delay(100);  // Debounce delay
@@ -153,3 +176,30 @@ void displayPace() {
   display.display();
 }
 
+void displayLegLength() {
+  char buffer[32];
+  display.clearDisplay();
+  display.setTextSize(2);
+  display.setTextColor(SSD1306_WHITE);
+  display.setCursor(0, 0);
+
+  formatPace(optimalPace, buffer);
+  display.print(buffer);
+  display.println("/km");
+
+  dtostrf(legLength, 2, 1, buffer);
+  display.print(buffer);
+  display.println("m");
+  
+  display.display();
+}
+
+// Need to set up FSM between user input mode and speed checking/displaying, currently just printing speed/efficiency
+void loop() {
+  while (Serial1.available()) {
+    char c = Serial1.read();
+    if (gps.encode(c)) {
+      updateState();
+    }
+  }
+}
