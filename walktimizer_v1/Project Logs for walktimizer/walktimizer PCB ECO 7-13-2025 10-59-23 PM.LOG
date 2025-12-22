@@ -1,0 +1,98 @@
+Removed Pin From Net: NetName=VREG Pin=C1-1
+Removed Pin From Net: NetName=VSELECT Pin=C2-1
+Removed Pin From Net: NetName=GND Pin=U2-1
+Removed Pin From Net: NetName=VREG Pin=U2-2
+Removed Pin From Net: NetName=VREG Pin=U2-4
+Change Component Footprint: Designator=S1 Old Footprint=FileName=C:\Users\marcu\Documents\AltiumLL\SamacSys.PcbLib New Footprint=SPEH130103
+Change Component Footprint: Designator=S2 Old Footprint=FileName=C:\Users\marcu\Documents\AltiumLL\SamacSys.PcbLib New Footprint=SPEH130103
+Change Component Footprint: Designator=S3 Old Footprint=FileName=C:\Users\marcu\Documents\AltiumLL\SamacSys.PcbLib New Footprint=SPEH130103
+Change Component Footprint: Designator=J3 Old Footprint=FileName=C:\Users\Public\Documents\Altium\printing.PcbLib New Footprint=HDR_1x4_2.5mm_TH
+Change Component Footprint: Designator=J5 Old Footprint=FileName=C:\Users\Public\Documents\Altium\printing.PcbLib New Footprint=HDR_2x3_2.5mm_TH
+Change Component Footprint: Designator=J2 Old Footprint=FileName=TYPE-C-31-M-12:\PCBLib\0.pcblib New Footprint=HRO_TYPE-C-31-M-12
+Change Component Footprint: Designator=U3 Old Footprint=LIBRARYSOURCE=Vault New Footprint=44ML_M
+Change Component Footprint: Designator=C6 Old Footprint=LIBRARYSOURCE=Vault New Footprint=CAPC1608X90X40LL10T20
+Change Component Footprint: Designator=C7 Old Footprint=LIBRARYSOURCE=Vault New Footprint=CAPC1608X90X40LL10T20
+Change Component Footprint: Designator=Y1 Old Footprint=LIBRARYSOURCE=Vault New Footprint=FP-ABM3-MFG
+Change Component Footprint: Designator=J4 Old Footprint=LIBRARYSOURCE=Vault New Footprint=FP-BM04B-SRSS-TBT_LF_SN-MFG
+Change Component Footprint: Designator=R2 Old Footprint=LIBRARYSOURCE=Vault New Footprint=FP-CRCW0603-e3-IPC_C
+Change Component Footprint: Designator=R3 Old Footprint=LIBRARYSOURCE=Vault New Footprint=FP-CRCW0603-e3-IPC_C
+Change Component Footprint: Designator=C3 Old Footprint=LIBRARYSOURCE=Vault New Footprint=FP-GRM15-MFG
+Change Component Footprint: Designator=C4 Old Footprint=LIBRARYSOURCE=Vault New Footprint=FP-GRM15-MFG
+Change Component Footprint: Designator=C5 Old Footprint=LIBRARYSOURCE=Vault New Footprint=FP-GRM55D-0_4-IPC_A
+Change Component Footprint: Designator=C1 Old Footprint=LIBRARYSOURCE=Vault New Footprint=FP-GRT188-0_1-e0_2_0_5-IPC_B
+Change Component Footprint: Designator=C2 Old Footprint=LIBRARYSOURCE=Vault New Footprint=FP-GRT188-0_1-e0_2_0_5-IPC_B
+Change Component Footprint: Designator=U1 Old Footprint=LIBRARYSOURCE=Vault New Footprint=FP-PW0008A-IPC_B
+Change Component Footprint: Designator=R6 Old Footprint=LIBRARYSOURCE=Vault New Footprint=FP-RC0603-0_55-IPC_C
+Change Component Footprint: Designator=J1 Old Footprint=LIBRARYSOURCE=Vault New Footprint=FP-S3B-ZR-SM4A-TF_LF_SN-MFG
+Change Component Footprint: Designator=U2 Old Footprint=LIBRARYSOURCE=Vault New Footprint=FP-SOT25-IPC_A
+Change Component Footprint: Designator=R4 Old Footprint=LIBRARYSOURCE=Vault New Footprint=RESC1005X40X25LL05T05
+Change Component Footprint: Designator=R5 Old Footprint=LIBRARYSOURCE=Vault New Footprint=RESC1005X40X25LL05T05
+Change Component Footprint: Designator=R1 Old Footprint=LIBRARYSOURCE=Vault New Footprint=RESC2013X60X35ML10T20
+Change Component Comment : Designator=C1 Old Comment=22uF New Comment=1.0uF
+Change Component Comment : Designator=U2 Old Comment=AMS1117-3.3 New Comment=AP2112K-3.3TRG1
+Change Managed Component Library Link : Designator=C1 Old VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 New VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 Old ItemGUID=32E2597C-C311-4A44-AE41-B513D7BDCF06 New ItemGUID=25679F5B-BC02-46D6-A4B0-894D46059ABA Old RevisionGUID=4C61D5DD-DA8C-405E-8129-F18C2E19BD86 New RevisionGUID=45714E45-5894-4A5B-A739-74F4D5F11036
+Change Managed Component Library Link : Designator=C2 Old VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 New VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 Old ItemGUID=A837D292-BB0D-4C97-BD2C-46B7AADFC66A New ItemGUID=25679F5B-BC02-46D6-A4B0-894D46059ABA Old RevisionGUID=5D9AA69C-1A5C-4CBE-A586-D4C375D60B1E New RevisionGUID=45714E45-5894-4A5B-A739-74F4D5F11036
+Change Managed Component Library Link : Designator=U2 Old VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 New VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 Old ItemGUID=A235AA21-9D40-41CE-AFD5-ED190622537A New ItemGUID=4C020152-9229-455A-93BD-7C6EB563F238 Old RevisionGUID=3D147F22-7269-42D2-A886-FBED816C16F3 New RevisionGUID=2A5E9406-9AB7-43E0-9592-C03FD7D0BD29
+Change component parameters: Designator = "C1" ("C1"); Footprint = "LIBRARYSOURCE=Vault"; UniqueID = "\QFVVEHQC" ("\QFVVEHQC")
+Change component parameters (AddParameter): Name = "Capacitance"; Value = "1uF"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Case Code (Imperial)"; Value = "0603"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Case Code (Metric)"; Value = "1608"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Case/Package"; Value = "0603"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Dielectric"; Value = "X5R"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Length"; Value = "0.063inch"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Max Operating Temperature"; Value = "85°C"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Min Operating Temperature"; Value = "-55°C"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mount"; Value = "Surface Mount"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Packaging"; Value = "Tape and Reel"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Ratings"; Value = "AEC-Q200"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Thickness"; Value = "0.035inch"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Tolerance"; Value = "10%"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Voltage Rating"; Value = "50V"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Voltage Rating (DC)"; Value = "50V"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Width"; Value = "0.031inch"; VariantName = "[No Variations]"
+Change component parameters: Designator = "C2" ("C2"); Footprint = "LIBRARYSOURCE=Vault"; UniqueID = "\AJFFMWXB" ("\AJFFMWXB")
+Change component parameters (AddParameter): Name = "Capacitance"; Value = "1uF"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Case Code (Imperial)"; Value = "0603"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Case Code (Metric)"; Value = "1608"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Case/Package"; Value = "0603"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Dielectric"; Value = "X5R"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Length"; Value = "0.063inch"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Max Operating Temperature"; Value = "85°C"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Min Operating Temperature"; Value = "-55°C"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mount"; Value = "Surface Mount"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Packaging"; Value = "Tape and Reel"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Ratings"; Value = "AEC-Q200"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Thickness"; Value = "0.035inch"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Tolerance"; Value = "10%"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Voltage Rating"; Value = "50V"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Voltage Rating (DC)"; Value = "50V"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Width"; Value = "0.031inch"; VariantName = "[No Variations]"
+Change component parameters: Designator = "U2" ("U2"); Footprint = "LIBRARYSOURCE=Vault"; UniqueID = "\ADXLOBFF" ("\ADXLOBFF")
+Change component parameters (AddParameter): Name = "Accuracy"; Value = "1.5%"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Case/Package"; Value = "SOT-23-5"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Dropout Voltage"; Value = "250mV"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Height"; Value = "1.3mm"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Lead Free"; Value = "Lead Free"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Length"; Value = "3.1mm"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Max Input Voltage"; Value = "6V"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Max Operating Temperature"; Value = "85°C"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Max Output Current"; Value = "600mA"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Min Input Voltage"; Value = "2.5V"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Min Operating Temperature"; Value = "-40°C"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mount"; Value = "Surface Mount"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Number of Outputs"; Value = "1"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Number of Pins"; Value = "5"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Number of Regulators"; Value = "1"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Output Current"; Value = "600mA"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Output Type"; Value = "Fixed"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Output Voltage"; Value = "3.3V"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package Quantity"; Value = "1"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Packaging"; Value = "Tape and Reel"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Polarity"; Value = "Positive"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Quiescent Current"; Value = "55uA"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Width"; Value = "1.7mm"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=VSELECT Pin=C1-1
+Added Pin To Net: NetName=VREG Pin=C2-1
+Added Pin To Net: NetName=VSELECT Pin=U2-1
+Added Pin To Net: NetName=GND Pin=U2-2
+Added Pin To Net: NetName=VREG Pin=U2-5

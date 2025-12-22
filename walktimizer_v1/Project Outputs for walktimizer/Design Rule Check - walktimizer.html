@@ -1,0 +1,561 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 9em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD25\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">13/12/2025</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">01:51:29</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:00</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc" class="file"><acronym title="C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc">C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">71</td></tr>
+</table>
+</td>
+</table><a name="IDNNGAMXRWDMPUCC0EJ0DMFEBKLOGZF4BGU3VHB4GU5TRC2JJLL4DE"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID4XJCD5GVIJLPBNE4RAIK1HT1QB3WBY24XCBEHKQQ01EFFMKT03B">Clearance Constraint (Gap=5mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDFRWCXKD1CHSOQVMI2CCX4BANJQPGKJPPPE3FBIGOSCCIKOWYKZN">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDNBPG5CKWXTJAKWNIUOFZZLT1QMRGBOT3CEN2RFNP11AU1NMAJ3BO">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">45</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDN4CR3ASBPDKIJW3CCNFGA3IV0BVO5VTKNZNJLYLUIR1QGYDINIIP">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDXOMVZJOOV2AYJAHUL5LTDDUW1FDKMDXYZ1AYJ2IBVRB12UWQAT0F">Width Constraint (Min=6.5mil) (Max=20mil) (Preferred=10mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDEYAJC1Y0I3HMOEXJ4OCS5OV45HAJVU4BTCYLIBHYTRQ1XMZE1KXE">Routing Topology Rule(Topology=Shortest) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDMIXIVFR3UYN0HOE2HEOFZZ2VNOKZ44JQUITWO2FAVQXVNLRZ0E3I">Power Plane Connect Rule(Relief Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID23U10IQ4DTW5NILX2J22K5HTQBNNJ4RMCKETUQPCNMFWJVZ25G0M">Hole Size Constraint (Min=1mil) (Max=100mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDI0GREOS1YZIJRSKBWY3H334TOQ2BXPWYLFTM3LNH1UFGR4XND0I">Hole To Hole Clearance (Gap=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDPAL03AEK1C1NIWQSJWVJ1NBNUIHZ3F5TOG2YZ3IGXQDOT53MUWUO">Minimum Solder Mask Sliver (Gap=3.937mil) (All),(All)</a></td>
+<td class="column2">12</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDA2YM3BQGELIJBVG2K4RMPXXCQPNXPO0IQFNHOLHCTPFV4JZWU5XH">Silk To Solder Mask (Clearance=10mil) (IsPad),(All)</a></td>
+<td class="column2">13</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDUUYMF12CF21PHXFPPYLVE5TR2IINRHK4ZV0IOOHCK3EJVSEFZCLK">Silk to Silk (Clearance=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDR1KZIC2TBVEDHDKKCHFTVY2EPB0OJTK4BXJW5LM5TFG0ZJSYD0FI">Net Antennae (Tolerance=0mil) (All)</a></td>
+<td class="column2">1</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDFPZYJVBCIQ1SMVQT5UGESDDZ2OAEG0ZYWD2JDHNJSH3SATZ1DK5I">Matched Lengths(Tolerance=1000mil) (InDifferentialPairClass('USB'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDWQCJZAWUJGJTIZSBJVCJ4CH3HDTBKXETM1EPJKBQF3LSA2UDOI">Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">71</td>
+</tr>
+</table><br><a name="IDNBPG5CKWXTJAKWNIUOFZZLT1QMRGBOT3CEN2RFNP11AU1NMAJ3BO"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Un-Routed Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1358.184mil|Location2.X=1507.129mil|Location1.Y=3006.785mil|Location2.Y=3063.231mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1358.184mil|Location2.X=1507.129mil|Location1.Y=3006.785mil|Location2.Y=3063.231mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad R3-1(1372.653mil,3046.26mil) on Top Layer And Pad C10-1(1489.173mil,3025.658mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1471.218mil|Location2.X=1643.764mil|Location1.Y=3006.785mil|Location2.Y=3066.008mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1471.218mil|Location2.X=1643.764mil|Location1.Y=3006.785mil|Location2.Y=3066.008mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C10-1(1489.173mil,3025.658mil) on Top Layer And Pad U3-5(1599.409mil,3050.197mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1471.218mil|Location2.X=1643.764mil|Location1.Y=2949.564mil|Location2.Y=3034.512mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1471.218mil|Location2.X=1643.764mil|Location1.Y=2949.564mil|Location2.Y=3034.512mil|Absolute=True">Un-Routed Net Constraint: Net UCap Between Pad C10-2(1489.173mil,2968.437mil) on Top Layer And Pad U3-6(1599.409mil,3018.701mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1446.26mil|Location2.X=1690.358mil|Location1.Y=3431.362mil|Location2.Y=3624.606mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1446.26mil|Location2.X=1690.358mil|Location1.Y=3431.362mil|Location2.Y=3624.606mil|Absolute=True">Un-Routed Net Constraint: Net VSELECT Between Pad C1-1(1546.26mil,3531.362mil) on Bottom Layer And Track (1568.876mil,3524.606mil)(1590.358mil,3524.606mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1636.748mil|Location2.X=1739.173mil|Location1.Y=2579.661mil|Location2.Y=2706.693mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1636.748mil|Location2.X=1739.173mil|Location1.Y=2579.661mil|Location2.Y=2706.693mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C11-1(1657.48mil,2600.394mil) on Bottom Layer And Pad C7-1(1729.331mil,2698.819mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1440.878mil|Location2.X=1678.213mil|Location1.Y=2579.661mil|Location2.Y=2699.28mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1440.878mil|Location2.X=1678.213mil|Location1.Y=2579.661mil|Location2.Y=2699.28mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J5-6(1476.378mil,2663.78mil) on Multi-Layer And Pad C11-1(1657.48mil,2600.394mil) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1528.304mil|Location2.X=1624.12mil|Location1.Y=3569.71mil|Location2.Y=3628.191mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1528.304mil|Location2.X=1624.12mil|Location1.Y=3569.71mil|Location2.Y=3628.191mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C1-2(1546.26mil,3588.583mil) on Bottom Layer And Pad C2-2(1605.248mil,3610.236mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1465.551mil|Location2.X=1564.215mil|Location1.Y=3555.118mil|Location2.Y=3607.455mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1465.551mil|Location2.X=1564.215mil|Location1.Y=3555.118mil|Location2.Y=3607.455mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C5-1(1473.425mil,3564.961mil) on Top Layer And Pad C1-2(1546.26mil,3588.583mil) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1857.677mil|Location2.X=2074.41mil|Location1.Y=2500.394mil|Location2.Y=2495.669mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1857.677mil|Location2.X=2074.41mil|Location1.Y=2500.394mil|Location2.Y=2495.669mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C12-1(1957.677mil,2600.394mil) on Bottom Layer And Track (1974.409mil,2395.669mil)(1980.315mil,2401.575mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1586.376mil|Location2.X=1820.121mil|Location1.Y=3589.328mil|Location2.Y=3629.176mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1586.376mil|Location2.X=1820.121mil|Location1.Y=3589.328mil|Location2.Y=3629.176mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C2-2(1605.248mil,3610.236mil) on Top Layer And Pad C3-2(1796.333mil,3609.252mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1772.546mil|Location2.X=1906.496mil|Location1.Y=3545.276mil|Location2.Y=3629.176mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1772.546mil|Location2.X=1906.496mil|Location1.Y=3545.276mil|Location2.Y=3629.176mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C3-2(1796.333mil,3609.252mil) on Top Layer And Pad J4-5(1882.874mil,3580.709mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1346.457mil|Location2.X=1424.818mil|Location1.Y=3245.941mil|Location2.Y=3311.115mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1346.457mil|Location2.X=1424.818mil|Location1.Y=3245.941mil|Location2.Y=3311.115mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C4-1(1356.299mil,3276.575mil) on Top Layer And Pad U1-2(1417.323mil,3278.528mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1225.787mil|Location2.X=1456.299mil|Location1.Y=3141.142mil|Location2.Y=3376.575mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1225.787mil|Location2.X=1456.299mil|Location1.Y=3141.142mil|Location2.Y=3376.575mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Track (1272.638mil,3241.142mil)(1325.787mil,3241.142mil) on Top Layer And Pad C4-1(1356.299mil,3276.575mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1256.299mil|Location2.X=1542.909mil|Location1.Y=3145.079mil|Location2.Y=3350.745mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1256.299mil|Location2.X=1542.909mil|Location1.Y=3145.079mil|Location2.Y=3350.745mil|Absolute=True">Un-Routed Net Constraint: Net VUSB Between Pad C4-2(1356.299mil,3245.079mil) on Top Layer And Track (1401.81mil,3209.646mil)(1442.909mil,3250.745mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1461.009mil|Location2.X=1481.299mil|Location1.Y=3468.412mil|Location2.Y=3574.803mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1461.009mil|Location2.X=1481.299mil|Location1.Y=3468.412mil|Location2.Y=3574.803mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U1-5(1468.504mil,3500.999mil) on Top Layer And Pad C5-1(1473.425mil,3564.961mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1719.488mil|Location2.X=1776.638mil|Location1.Y=2690.945mil|Location2.Y=2838.646mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1719.488mil|Location2.X=1776.638mil|Location1.Y=2690.945mil|Location2.Y=2838.646mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C7-1(1729.331mil,2698.819mil) on Top Layer And Pad U3-15(1760.827mil,2794.291mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1933.992mil|Location2.X=2054.134mil|Location1.Y=3198.756mil|Location2.Y=3287.465mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1933.992mil|Location2.X=2054.134mil|Location1.Y=3198.756mil|Location2.Y=3287.465mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U3-35(1949.803mil,3243.11mil) on Top Layer And Pad C8-1(2046.26mil,3243.11mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2006.89mil|Location2.X=2063.976mil|Location1.Y=3233.268mil|Location2.Y=3511.811mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2006.89mil|Location2.X=2063.976mil|Location1.Y=3233.268mil|Location2.Y=3511.811mil|Absolute=True">Un-Routed Net Constraint: Net VREG Between Pad C8-2(2014.764mil,3243.11mil) on Top Layer And Pad J4-4(2052.165mil,3481.299mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2003.874mil|Location2.X=2092.583mil|Location1.Y=2876.906mil|Location2.Y=3252.953mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2003.874mil|Location2.X=2092.583mil|Location1.Y=2876.906mil|Location2.Y=3252.953mil|Absolute=True">Un-Routed Net Constraint: Net VREG Between Pad C8-2(2014.764mil,3243.11mil) on Top Layer And Pad U3-24(2048.228mil,2892.717mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1589.567mil|Location2.X=1713.646mil|Location1.Y=3198.756mil|Location2.Y=3287.465mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1589.567mil|Location2.X=1713.646mil|Location1.Y=3198.756mil|Location2.Y=3287.465mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C9-1(1597.441mil,3243.11mil) on Top Layer And Pad U3-43(1697.835mil,3243.11mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1176.181mil|Location2.X=1290.354mil|Location1.Y=3432.087mil|Location2.Y=3518.701mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1176.181mil|Location2.X=1290.354mil|Location1.Y=3432.087mil|Location2.Y=3518.701mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J1-3(1233.268mil,3445.866mil) on Top Layer And Pad J1-2(1233.268mil,3504.921mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1046.26mil|Location2.X=1290.354mil|Location1.Y=3347.441mil|Location2.Y=3459.646mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1046.26mil|Location2.X=1290.354mil|Location1.Y=3347.441mil|Location2.Y=3459.646mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J1-4(1083.661mil,3369.095mil) on Top Layer And Pad J1-3(1233.268mil,3445.866mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1046.26mil|Location2.X=1121.063mil|Location1.Y=3347.441mil|Location2.Y=3662.402mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1046.26mil|Location2.X=1121.063mil|Location1.Y=3347.441mil|Location2.Y=3662.402mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J1-4(1083.661mil,3369.095mil) on Top Layer And Pad J1-5(1083.661mil,3640.748mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1046.26mil|Location2.X=1123.094mil|Location1.Y=3263.717mil|Location2.Y=3390.748mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1046.26mil|Location2.X=1123.094mil|Location1.Y=3263.717mil|Location2.Y=3390.748mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J1-4(1083.661mil,3369.095mil) on Top Layer And Pad J2-S3(1085.63mil,3285.433mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1206.433mil|Location2.X=1297.047mil|Location1.Y=2923.165mil|Location2.Y=3002.953mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1206.433mil|Location2.X=1297.047mil|Location1.Y=2923.165mil|Location2.Y=3002.953mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J2-S2(1249.803mil,2944.882mil) on Multi-Layer And Pad J2-B1_A12(1272.638mil,2989.173mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1248.228mil|Location2.X=1387.123mil|Location1.Y=2975.394mil|Location2.Y=3063.231mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1248.228mil|Location2.X=1387.123mil|Location1.Y=2975.394mil|Location2.Y=3063.231mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J2-B1_A12(1272.638mil,2989.173mil) on Top Layer And Pad R3-1(1372.653mil,3046.26mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1149.803mil|Location2.X=1372.638mil|Location1.Y=3185.433mil|Location2.Y=3341.142mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1149.803mil|Location2.X=1372.638mil|Location1.Y=3185.433mil|Location2.Y=3341.142mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J2-S1(1249.803mil,3285.433mil) on Multi-Layer And Track (1272.638mil,3241.142mil)(1272.638mil,3241.142mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1634.579mil|Location2.X=1713.646mil|Location1.Y=3198.756mil|Location2.Y=3385.894mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1634.579mil|Location2.X=1713.646mil|Location1.Y=3198.756mil|Location2.Y=3385.894mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J3-1(1670.079mil,3350.394mil) on Multi-Layer And Pad U3-43(1697.835mil,3243.11mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1629.803mil|Location2.X=1805.579mil|Location1.Y=3314.894mil|Location2.Y=3536.729mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1629.803mil|Location2.X=1805.579mil|Location1.Y=3314.894mil|Location2.Y=3536.729mil|Absolute=True">Un-Routed Net Constraint: Net VREG Between Pad U2-5(1663.407mil,3524.606mil) on Top Layer And Pad J3-2(1770.079mil,3350.394mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1566.339mil|Location2.X=1870.079mil|Location1.Y=3143.11mil|Location2.Y=3450.394mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1566.339mil|Location2.X=1870.079mil|Location1.Y=3143.11mil|Location2.Y=3450.394mil|Absolute=True">Un-Routed Net Constraint: Net VREG Between Track (1666.339mil,3243.11mil)(1666.339mil,3243.11mil) on Top Layer And Pad J3-2(1770.079mil,3350.394mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1859.252mil|Location2.X=1945.866mil|Location1.Y=3450.787mil|Location2.Y=3616.142mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1859.252mil|Location2.X=1945.866mil|Location1.Y=3450.787mil|Location2.Y=3616.142mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J4-5(1882.874mil,3580.709mil) on Top Layer And Pad J4-1(1934.055mil,3481.299mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1859.252mil|Location2.X=2126.968mil|Location1.Y=3545.276mil|Location2.Y=3616.142mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1859.252mil|Location2.X=2126.968mil|Location1.Y=3545.276mil|Location2.Y=3616.142mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J4-5(1882.874mil,3580.709mil) on Top Layer And Pad J4-6(2103.346mil,3580.709mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1273.518mil|Location2.X=1511.878mil|Location1.Y=2793.068mil|Location2.Y=2899.28mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1273.518mil|Location2.X=1511.878mil|Location1.Y=2793.068mil|Location2.Y=2899.28mil|Absolute=True">Un-Routed Net Constraint: Net VREG Between Pad R6-2(1286.485mil,2809.055mil) on Top Layer And Pad J5-2(1476.378mil,2863.78mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1376.378mil|Location2.X=1829.331mil|Location1.Y=2763.78mil|Location2.Y=2894.291mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1376.378mil|Location2.X=1829.331mil|Location1.Y=2763.78mil|Location2.Y=2894.291mil|Absolute=True">Un-Routed Net Constraint: Net VREG Between Pad J5-2(1476.378mil,2863.78mil) on Multi-Layer And Track (1729.331mil,2794.291mil)(1729.331mil,2794.291mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1122.968mil|Location2.X=1411.878mil|Location1.Y=2628.28mil|Location2.Y=2768.764mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1122.968mil|Location2.X=1411.878mil|Location1.Y=2628.28mil|Location2.Y=2768.764mil|Absolute=True">Un-Routed Net Constraint: Net nRESET Between Pad S3-1(1166.339mil,2725.394mil) on Top Layer [Unplated] And Pad J5-5(1376.378mil,2663.78mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1340.878mil|Location2.X=1713.646mil|Location1.Y=2628.28mil|Location2.Y=2838.646mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1340.878mil|Location2.X=1713.646mil|Location1.Y=2628.28mil|Location2.Y=2838.646mil|Absolute=True">Un-Routed Net Constraint: Net nRESET Between Pad J5-5(1376.378mil,2663.78mil) on Multi-Layer And Pad U3-13(1697.835mil,2794.291mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1122.968mil|Location2.X=1511.878mil|Location1.Y=2445.803mil|Location2.Y=2699.28mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1122.968mil|Location2.X=1511.878mil|Location1.Y=2445.803mil|Location2.Y=2699.28mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad S3-2(1166.339mil,2489.173mil) on Top Layer [Unplated] And Pad J5-6(1476.378mil,2663.78mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1409.828mil|Location2.X=1524.669mil|Location1.Y=3245.941mil|Location2.Y=3385.89mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1409.828mil|Location2.X=1524.669mil|Location1.Y=3245.941mil|Location2.Y=3385.89mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U1-2(1417.323mil,3278.528mil) on Top Layer And Pad R1-1(1492.126mil,3358.268mil) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1459.583mil|Location2.X=1524.669mil|Location1.Y=3330.646mil|Location2.Y=3533.587mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1459.583mil|Location2.X=1524.669mil|Location1.Y=3330.646mil|Location2.Y=3533.587mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U1-5(1468.504mil,3500.999mil) on Top Layer And Pad R1-1(1492.126mil,3358.268mil) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1459.583mil|Location2.X=1524.669mil|Location1.Y=3245.941mil|Location2.Y=3311.115mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1459.583mil|Location2.X=1524.669mil|Location1.Y=3245.941mil|Location2.Y=3311.115mil|Absolute=True">Un-Routed Net Constraint: Net ILIM Between Pad U1-4(1468.504mil,3278.528mil) on Top Layer And Pad R1-2(1492.126mil,3279.528mil) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1402.475mil|Location2.X=1431.414mil|Location1.Y=3147.399mil|Location2.Y=3311.115mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1402.475mil|Location2.X=1431.414mil|Location1.Y=3147.399mil|Location2.Y=3311.115mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad R2-1(1416.945mil,3164.37mil) on Top Layer And Pad U1-2(1417.323mil,3278.528mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1122.968mil|Location2.X=1246.167mil|Location1.Y=2682.024mil|Location2.Y=2825.042mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1122.968mil|Location2.X=1246.167mil|Location1.Y=2682.024mil|Location2.Y=2825.042mil|Absolute=True">Un-Routed Net Constraint: Net nRESET Between Pad S3-1(1166.339mil,2725.394mil) on Top Layer [Unplated] And Pad R6-1(1233.2mil,2809.055mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1461.009mil|Location2.X=1602.481mil|Location1.Y=3468.412mil|Location2.Y=3533.587mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1461.009mil|Location2.X=1602.481mil|Location1.Y=3468.412mil|Location2.Y=3533.587mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U1-5(1468.504mil,3500.999mil) on Top Layer And Pad U2-2(1568.876mil,3487.205mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1682.024mil|Location2.X=1965.614mil|Location1.Y=3198.756mil|Location2.Y=3287.465mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1682.024mil|Location2.X=1965.614mil|Location1.Y=3198.756mil|Location2.Y=3287.465mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U3-43(1697.835mil,3243.11mil) on Top Layer And Pad U3-35(1949.803mil,3243.11mil) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1566.339mil|Location2.X=2081.299mil|Location1.Y=3143.11mil|Location2.Y=3343.11mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1566.339mil|Location2.X=2081.299mil|Location1.Y=3143.11mil|Location2.Y=3343.11mil|Absolute=True">Un-Routed Net Constraint: Net VREG Between Track (1666.339mil,3243.11mil)(1666.339mil,3243.11mil) on Top Layer And Track (1981.299mil,3243.11mil)(1981.299mil,3243.11mil) on Top Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDPAL03AEK1C1NIWQSJWVJ1NBNUIHZ3F5TOG2YZ3IGXQDOT53MUWUO"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Solder Mask Sliver (Gap=3.937mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1634.155mil|Location2.X=1639.342mil|Location1.Y=2620.438mil|Location2.Y=2625.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1634.155mil|Location2.X=1639.342mil|Location1.Y=2620.438mil|Location2.Y=2625.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 3.937mil) Between Pad C11-1(1657.48mil,2600.394mil) on Bottom Layer And Pad C11-2(1657.48mil,2645.669mil) on Bottom Layer [Bottom Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1934.351mil|Location2.X=1939.538mil|Location1.Y=2620.438mil|Location2.Y=2625.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1934.351mil|Location2.X=1939.538mil|Location1.Y=2620.438mil|Location2.Y=2625.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 3.937mil) Between Pad C12-1(1957.677mil,2600.394mil) on Bottom Layer And Pad C12-2(1957.677mil,2645.669mil) on Bottom Layer [Bottom Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1244.682mil|Location2.X=1249.869mil|Location1.Y=2998.785mil|Location2.Y=3003.972mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1244.682mil|Location2.X=1249.869mil|Location1.Y=2998.785mil|Location2.Y=3003.972mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (1.906mil &lt; 3.937mil) Between Pad J2-(1230.512mil,3001.378mil) on Multi-Layer And Pad J2-B1_A12(1272.638mil,2989.173mil) on Top Layer [Top Solder] Mask Sliver [1.906mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1244.325mil|Location2.X=1251.068mil|Location1.Y=2999.523mil|Location2.Y=3009.076mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1244.325mil|Location2.X=1251.068mil|Location1.Y=2999.523mil|Location2.Y=3009.076mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (2.743mil &lt; 3.937mil) Between Pad J2-(1230.512mil,3001.378mil) on Multi-Layer And Pad J2-B4_A9(1272.638mil,3020.669mil) on Top Layer [Top Solder] Mask Sliver [2.743mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1244.682mil|Location2.X=1249.869mil|Location1.Y=3226.343mil|Location2.Y=3231.53mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1244.682mil|Location2.X=1249.869mil|Location1.Y=3226.343mil|Location2.Y=3231.53mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (1.906mil &lt; 3.937mil) Between Pad J2-(1230.512mil,3228.937mil) on Multi-Layer And Pad J2-A1_B12(1272.638mil,3241.142mil) on Top Layer [Top Solder] Mask Sliver [1.906mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1244.325mil|Location2.X=1250.972mil|Location1.Y=3221.239mil|Location2.Y=3230.821mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1244.325mil|Location2.X=1250.972mil|Location1.Y=3221.239mil|Location2.Y=3230.821mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (2.743mil &lt; 3.937mil) Between Pad J2-(1230.512mil,3228.937mil) on Multi-Layer And Pad J2-A4_B9(1272.638mil,3209.646mil) on Top Layer [Top Solder] Mask Sliver [2.743mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1789.729mil|Location2.X=1794.916mil|Location1.Y=2745.993mil|Location2.Y=2751.18mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1789.729mil|Location2.X=1794.916mil|Location1.Y=2745.993mil|Location2.Y=2751.18mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (2.701mil &lt; 3.937mil) Between Pad U3-16(1792.323mil,2794.291mil) on Top Layer And Via (1792.323mil,2735.236mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [2.701mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1820.672mil|Location2.X=1825.859mil|Location1.Y=2745.994mil|Location2.Y=2751.181mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1820.672mil|Location2.X=1825.859mil|Location1.Y=2745.994mil|Location2.Y=2751.181mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (2.717mil &lt; 3.937mil) Between Pad U3-17(1823.819mil,2794.291mil) on Top Layer And Via (1822.835mil,2735.236mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [2.717mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1852.722mil|Location2.X=1857.909mil|Location1.Y=2745.993mil|Location2.Y=2751.18mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1852.722mil|Location2.X=1857.909mil|Location1.Y=2745.993mil|Location2.Y=2751.18mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (2.701mil &lt; 3.937mil) Between Pad U3-18(1855.315mil,2794.291mil) on Top Layer And Via (1855.315mil,2735.236mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [2.701mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1884.217mil|Location2.X=1889.405mil|Location1.Y=2745.993mil|Location2.Y=2751.18mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1884.217mil|Location2.X=1889.405mil|Location1.Y=2745.993mil|Location2.Y=2751.18mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (2.701mil &lt; 3.937mil) Between Pad U3-19(1886.811mil,2794.291mil) on Top Layer And Via (1886.811mil,2735.236mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [2.701mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1915.714mil|Location2.X=1920.901mil|Location1.Y=2745.993mil|Location2.Y=2751.18mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1915.714mil|Location2.X=1920.901mil|Location1.Y=2745.993mil|Location2.Y=2751.18mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (2.701mil &lt; 3.937mil) Between Pad U3-20(1918.307mil,2794.291mil) on Top Layer And Via (1918.307mil,2735.236mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [2.701mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1947.21mil|Location2.X=1952.397mil|Location1.Y=2745.993mil|Location2.Y=2751.18mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1947.21mil|Location2.X=1952.397mil|Location1.Y=2745.993mil|Location2.Y=2751.18mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (2.701mil &lt; 3.937mil) Between Pad U3-21(1949.803mil,2794.291mil) on Top Layer And Via (1949.803mil,2735.236mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [2.701mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDA2YM3BQGELIJBVG2K4RMPXXCQPNXPO0IQFNHOLHCTPFV4JZWU5XH"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=10mil) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1461.895mil|Location2.X=1473.145mil|Location1.Y=3325.084mil|Location2.Y=3336.334mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1461.895mil|Location2.X=1473.145mil|Location1.Y=3325.084mil|Location2.Y=3336.334mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad R1-1(1492.126mil,3358.268mil) on Bottom Layer And Track (1467.52mil,3314.961mil)(1467.52mil,3322.835mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1511.107mil|Location2.X=1522.357mil|Location1.Y=3325.084mil|Location2.Y=3336.334mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1511.107mil|Location2.X=1522.357mil|Location1.Y=3325.084mil|Location2.Y=3336.334mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad R1-1(1492.126mil,3358.268mil) on Bottom Layer And Track (1516.732mil,3314.961mil)(1516.732mil,3322.835mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1461.895mil|Location2.X=1473.145mil|Location1.Y=3301.461mil|Location2.Y=3312.711mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1461.895mil|Location2.X=1473.145mil|Location1.Y=3301.461mil|Location2.Y=3312.711mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad R1-2(1492.126mil,3279.528mil) on Bottom Layer And Track (1467.52mil,3314.961mil)(1467.52mil,3322.835mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1511.107mil|Location2.X=1522.357mil|Location1.Y=3301.461mil|Location2.Y=3312.711mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1511.107mil|Location2.X=1522.357mil|Location1.Y=3301.461mil|Location2.Y=3312.711mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad R1-2(1492.126mil,3279.528mil) on Bottom Layer And Track (1516.732mil,3314.961mil)(1516.732mil,3322.835mil) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1702.052mil|Location2.X=1713.302mil|Location1.Y=2632.17mil|Location2.Y=2643.42mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1702.052mil|Location2.X=1713.302mil|Location1.Y=2632.17mil|Location2.Y=2643.42mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.906mil &lt; 10mil) Between Pad S1-1(1665.354mil,2637.795mil) on Top Layer And Track (1712.598mil,2637.795mil)(1783.465mil,2637.795mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.906mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1702.052mil|Location2.X=1713.302mil|Location1.Y=2395.95mil|Location2.Y=2407.2mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1702.052mil|Location2.X=1713.302mil|Location1.Y=2395.95mil|Location2.Y=2407.2mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.906mil &lt; 10mil) Between Pad S1-2(1665.354mil,2401.575mil) on Top Layer And Track (1712.598mil,2401.575mil)(1783.465mil,2401.575mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.906mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2017.013mil|Location2.X=2028.263mil|Location1.Y=2632.17mil|Location2.Y=2643.42mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2017.013mil|Location2.X=2028.263mil|Location1.Y=2632.17mil|Location2.Y=2643.42mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.906mil &lt; 10mil) Between Pad S2-1(1980.315mil,2637.795mil) on Top Layer And Track (2027.559mil,2637.795mil)(2098.425mil,2637.795mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.906mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2017.013mil|Location2.X=2028.263mil|Location1.Y=2395.95mil|Location2.Y=2407.2mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2017.013mil|Location2.X=2028.263mil|Location1.Y=2395.95mil|Location2.Y=2407.2mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.906mil &lt; 10mil) Between Pad S2-2(1980.315mil,2401.575mil) on Top Layer And Track (2027.559mil,2401.575mil)(2098.425mil,2401.575mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.906mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1203.036mil|Location2.X=1214.286mil|Location1.Y=2719.769mil|Location2.Y=2731.019mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1203.036mil|Location2.X=1214.286mil|Location1.Y=2719.769mil|Location2.Y=2731.019mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.906mil &lt; 10mil) Between Pad S3-1(1166.339mil,2725.394mil) on Top Layer And Track (1213.583mil,2725.394mil)(1284.449mil,2725.394mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.906mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1203.036mil|Location2.X=1214.286mil|Location1.Y=2483.548mil|Location2.Y=2494.798mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1203.036mil|Location2.X=1214.286mil|Location1.Y=2483.548mil|Location2.Y=2494.798mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.906mil &lt; 10mil) Between Pad S3-2(1166.339mil,2489.173mil) on Top Layer And Track (1213.583mil,2489.173mil)(1284.449mil,2489.173mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.906mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1377.072mil|Location2.X=1384.739mil|Location1.Y=3242.108mil|Location2.Y=3249.774mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1377.072mil|Location2.X=1384.739mil|Location1.Y=3242.108mil|Location2.Y=3249.774mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad U1-1(1391.732mil,3278.528mil) on Top Layer And Track (1380.906mil,3240.157mil)(1380.906mil,3281.496mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1462.879mil|Location2.X=1474.129mil|Location1.Y=3529.379mil|Location2.Y=3540.629mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1462.879mil|Location2.X=1474.129mil|Location1.Y=3529.379mil|Location2.Y=3540.629mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.826mil &lt; 10mil) Between Pad U1-5(1468.504mil,3500.999mil) on Top Layer And Track (1437.008mil,3540.354mil)(1478.347mil,3540.354mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [2.826mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1437.289mil|Location2.X=1448.539mil|Location1.Y=3529.379mil|Location2.Y=3540.629mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1437.289mil|Location2.X=1448.539mil|Location1.Y=3529.379mil|Location2.Y=3540.629mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.826mil &lt; 10mil) Between Pad U1-6(1442.914mil,3500.999mil) on Top Layer And Track (1437.008mil,3540.354mil)(1478.347mil,3540.354mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [2.826mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDR1KZIC2TBVEDHDKKCHFTVY2EPB0OJTK4BXJW5LM5TFG0ZJSYD0FI"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Net Antennae (Tolerance=0mil) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1317.287mil|Location2.X=1340.876mil|Location1.Y=3232.642mil|Location2.Y=3266.841mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\mgee\AppData\Local\Programs\Syncthing\lock in\walktimizer\walktimizer.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1317.287mil|Location2.X=1340.876mil|Location1.Y=3232.642mil|Location2.Y=3266.841mil|Absolute=True">Net Antennae: Track (1272.638mil,3241.142mil)(1325.787mil,3241.142mil) on Top Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

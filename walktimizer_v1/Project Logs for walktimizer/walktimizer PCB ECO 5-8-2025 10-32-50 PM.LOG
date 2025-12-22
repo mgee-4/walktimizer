@@ -1,0 +1,28 @@
+Change Component Footprint: Designator=J4 Old Footprint=Copy of ZX-PM2.0-1-4PY-Footprint-1 New Footprint=FP-BM04B-SRSS-TBT_LF_SN-MFG
+Change Component Comment : Designator=J4 Old Comment=ZX-PM2.0-1-4PY New Comment=BM04B-SRSS-TBT(LF)(SN)
+Change Managed Component Library Link : Designator=J4 Old VaultGUID=0B6C1E8E-9FDC-4402-98D0-7E314BD4E35D New VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 Old ItemGUID=13fae7f8-dfc6-4160-8241-6750d8ce7073 New ItemGUID=36EE7D14-269C-440E-B137-2A2BBBC61292 Old RevisionGUID=bebb6394-effc-498f-9c42-9d55e800f698 New RevisionGUID=AE0B5BFB-82F7-48C5-AA83-CBD92DA94A2F
+Change component parameters: Designator = "J4" ("J4"); Footprint = "Copy of ZX-PM2.0-1-4PY-Footprint-1"; UniqueID = "\CQUFAQIO" ("\CQUFAQIO")
+Change component parameters (AddParameter): Name = "Color"; Value = "Natural"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Connector Type"; Value = "Header"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Contact Finish - Mating"; Value = "TIN"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Contact Material"; Value = "Copper Alloy"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Contact Plating"; Value = "Tin"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Contact Shape"; Value = "Square"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Contact Type"; Value = "Male Pin"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Fastening Type"; Value = "Pull"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Flammability Rating"; Value = "UL94 V-0"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Insulation Color"; Value = "Natural"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Insulation Material"; Value = "Nylon"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Lead Free"; Value = "Lead Free"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mated Stacking Heights"; Value = "4.9mm"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mount"; Value = "Surface Mount"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Number of Positions"; Value = "4"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Number of Rows"; Value = "1"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package Quantity"; Value = "1"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Packaging"; Value = "Cut Tape"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Pitch"; Value = "0.039inch"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Series"; Value = "SR"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Termination"; Value = "Solder"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Voltage Rating"; Value = "50V"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=J4-5
+Added Pin To Net: NetName=GND Pin=J4-6
