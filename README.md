@@ -1,5 +1,5 @@
 # walktimizer
-[![YouTube Video TBjx1o-y8Ds](https://img.youtube.com/vi/TBjx1o-y8Ds/maxresdefault.jpg)](https://www.youtube.com/watch?v=TBjx1o-y8Ds)
+[![](https://utfs.io/f/nGnSqDveMsqxi058RVugcbJtXWZeoNhKCBjRQaPzY7mVsl06)](https://www.youtube.com/watch?v=TBjx1o-y8Ds)
 A project inspired from a fact from a Physics for the Birds video about why humans like jazz. A general simplification of the the mechanics of walking is that of the inverted pendulum. From many introductory physics classes, we learn about the resonant frequency of pendulums. Combining this with my enjoyment of going outside and walking, I thought it would be fun to make a device that tracks optimal walking pace based on the length of our pendulum modelled legs. Additionally, I haven't had the chance to make many silly or just for fun projects in school, part of this is to scratch that itch.
 
 
