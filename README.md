@@ -11,10 +11,35 @@ A project inspired from a fact from a Physics for the Birds video about why huma
 ## Design Process
 As I was the one doing all parts of this project, wanted to use this chance to learn as much as I could. The design process involved a lot of learning as I went, as I never had the chance to work with a lot of things in this project.  The project followed an iterative design cycle. I began by defining high-level functional requirements and then broke these down into modular technical goals such as selecting a MCU or designing the power regulation stage. This allowed for continuous integration of new skills as the hardware complexity grew.
 
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/225f93f2-52e8-467f-a8ed-eebd6fa21c72" width="700" alt="walkv2 schematic">
+  <p>walktimizer v2 schematic</p>
+</div>
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/7c0807c3-d765-4ad7-8c9e-c7d2a37426b6" width="700" alt="walkv2 layout">
+  <p>walktimizer v2 layout</p>
+</div>
+
 I only had the initial goals starting out, overall it was a very iterative process. When I would work, I would set smaller goals on functions or features that I wanted to account for. Over time, I eventually got all the things I thought I needed. There is still programming, testing, and enclosure creation to do, so by no means is the job finished.
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/283758ea-2dd2-4601-b031-53f88b5c33a3" width="700" alt="walkv1 schematic">
+  <p>walktimizer v1 schematic</p>
+</div>
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/7400cf17-21dd-49f7-ab3e-8749e55a6ab4" width="700" alt="walkv1 layout">
+  <p>walktimizer v1 layout (where are the ground connections wow)</p>
+</div>
 
 ## Challenges and Lessons Learned
 With school and work and life things, I didn't have a consistent schedule where I could work on this project. This made it so there were weeks or months between any progress. This added an extra element of context switching that made it hard to keep up momentum. Definitely moving forward, it might be good to give myself stricter timelines so I stay on track.
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/d6c67d70-5f47-4063-a035-9a78687d2801" width="500" alt="oopsie">
+  <p>I messed up the screen placement so I have to manually fix it</p>
+</div>
 
 Another challenge was all the unknown, both the actual topic and the engineering involved. I didn't seek out any experts to ask for advice, in retrospect it probably would've made my life a lot easier while also increasing the quality of the project a lot. There's a biomechanics expert at the university I go to, I want to show him what I've worked on and get some of his thoughts on it.
 
